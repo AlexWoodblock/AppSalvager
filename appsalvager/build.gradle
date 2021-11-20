@@ -1,0 +1,21 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdk 31
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        buildConfigField "boolean", "LOGS_ENABLED", "true" // TODO: change to false!
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}

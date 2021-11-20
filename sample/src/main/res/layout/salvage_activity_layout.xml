@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:layout_marginBottom="16dp"
+            android:text="Your process is now in salvage mode"/>
+
+        <Button
+            android:id="@+id/fixContentProvider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fix ContentProvider"/>
+
+        <Button
+            android:id="@+id/fixApplication"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fix Application"/>
+
+        <Button
+            android:id="@+id/throwAnotherCrash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Crash salvage mode"/>
+
+    </LinearLayout>
+
+
+</FrameLayout>
