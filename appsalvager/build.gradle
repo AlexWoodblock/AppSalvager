@@ -6,13 +6,17 @@ plugins {
 android {
     compileSdk 31
 
+    defaultConfig {
+        minSdk 16
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
     defaultConfig {
-        buildConfigField "boolean", "LOGS_ENABLED", "true" // TODO: change to false!
+        buildConfigField "boolean", "LOGS_ENABLED", "false"
     }
 
     kotlinOptions {

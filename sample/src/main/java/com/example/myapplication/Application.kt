@@ -4,24 +4,21 @@ import android.app.Application
 import android.content.Context
 import android.util.Log
 import com.woodblockwithoutco.appsalvager.AppSalvager
-import com.woodblockwithoutco.appsalvager.policy.ExceptionNumberPolicy
+import com.woodblockwithoutco.appsalvager.policy.SameExceptionPolicy
 import java.util.*
 
 class TheApplication: Application() {
 
     override fun attachBaseContext(base: Context?) {
-        if (base != null) {
-            AppSalvager.install(
-                AppSalvager.Config(
-                    context = base,
-                    installExceptionHandler = true,
-                    policy = ExceptionNumberPolicy(),
-                    createSalvageView = ::createSalvageModeView
-                )
-            )
-        }
-
         super.attachBaseContext(base)
+
+        AppSalvager.install(
+            context = this,
+            configuration = AppSalvager.Configuration(
+                policy = SameExceptionPolicy(configuration = SameExceptionPolicy.Configuration(compareMessage = false)),
+                createSalvageView = ::createSalvageModeView
+            )
+        )
     }
 
     override fun onCreate() {

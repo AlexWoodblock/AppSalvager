@@ -31,7 +31,16 @@ private fun processNameReflection(methodName: String): String {
     }
 }
 
+/**
+ * Since API 18, there is ActivityThread.currentProcessName() method to obtain process name.
+ */
 private fun processNameReflectionV18() = processNameReflection(V18_REFLECTION_PROCESS_METHOD_NAME)
+
+/**
+ * Before API 18, a method to obtain process name was called ActivityThread.currentPackageName().
+ *
+ * Nice one.
+ */
 private fun processNameReflection() = processNameReflection(REFLECTION_PROCESS_METHOD_NAME)
 
 private const val V18_REFLECTION_PROCESS_METHOD_NAME = "currentProcessName"

@@ -11,12 +11,12 @@ fun createSalvageModeView(activity: Activity): View {
 
     root.findViewById<Button>(R.id.fixContentProvider).setOnClickListener {
         activity.setContentProviderBroken(false)
-        AppSalvager.resetExceptions()
+        AppSalvager.onProblemFixed()
     }
 
     root.findViewById<Button>(R.id.fixApplication).setOnClickListener {
         activity.setApplicationBroken(false)
-        AppSalvager.resetExceptions()
+        AppSalvager.onProblemFixed()
     }
 
     root.findViewById<Button>(R.id.throwAnotherCrash).setOnClickListener {

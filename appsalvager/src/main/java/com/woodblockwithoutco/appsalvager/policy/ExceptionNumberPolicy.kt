@@ -4,9 +4,16 @@ import com.woodblockwithoutco.appsalvager.internal.log.verboseLog
 import com.woodblockwithoutco.appsalvager.internal.storage.ExceptionDescription
 
 /**
- * [SalvageModePolicy] that activates based on number of exceptions.
+ * [SalvageModePolicy] that activates salvage mode based on number of exceptions
+ * passed in [threshold].
  */
 class ExceptionNumberPolicy(
+    /**
+     * Number of any exceptions that should occur on app start to trigger
+     * salvage mode. (Salvage mode will be triggered on last exception)
+     *
+     * Set to 3 by default.
+     */
     private val threshold: Int = DEFAULT_THRESHOLD
 ): SalvageModePolicy {
 

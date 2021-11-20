@@ -10,7 +10,6 @@ import kotlin.Exception
 /**
  * Repository providing access to stored exception descriptions.
  */
-// TODO: more policies
 internal class ExceptionDescriptionsRepository(
     private val context: Context,
     private val uptimeThreshold: Long

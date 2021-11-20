@@ -16,6 +16,12 @@ internal class SalvageActivity: Activity() {
         setContentView(createSalvageView(this))
     }
 
+    override fun onBackPressed() {
+        // We want to finish the whole task, otherwise it'll throw us back to main Activity,
+        // which will trigger another crash
+        finishAffinity()
+    }
+
     companion object {
 
         /**

@@ -4,11 +4,13 @@ import android.util.Base64
 import kotlin.Exception
 
 /**
- * Exception description that is stored on the disk.
+ * Simplified exception description to avoid error-prone reflection-based [Exception] class
+ * serialization.
  */
 data class ExceptionDescription(
+
     /**
-     * Class name of the exception.
+     * Full class name of the exception.
      */
     val clazz: String,
 
@@ -18,24 +20,35 @@ data class ExceptionDescription(
     val thread: String,
 
     /**
-     * Message of the exception.
+     * Message of the exception (if it's present).
      */
-    val message: String,
+    val message: String?,
 
     /**
      * Milliseconds that passed from app start when this exception occurred.
      */
-    val uptimeTimestamp: Long
+    val uptimeTimestamp: Long,
+
+    /**
+     * Timestamp when this exception occurred.
+     */
+    val timestamp: Long
 ) {
+
+    private val serializableMessage: String
+        get() = message ?: MISSING_MESSAGE
 
     /**
      * Serialize description into custom format.
+     *
+     * Uses custom format to avoid extra dependencies and potential errors.
      */
     internal fun serialize(): String {
         return clazz.toBase64() +
                 "," + thread.toBase64() +
-                "," + message.toBase64() +
-                "," + uptimeTimestamp
+                "," + serializableMessage.toBase64() +
+                "," + uptimeTimestamp +
+                "," + timestamp
     }
 
     internal companion object {
@@ -43,17 +56,24 @@ data class ExceptionDescription(
         /**
          * Convert exception to its' description.
          */
-        internal fun Throwable.toDescription(thread: Thread, uptimeTimestamp: Long): ExceptionDescription {
+        internal fun Throwable.toDescription(
+            thread: Thread,
+            uptimeTimestamp: Long,
+            timestamp: Long
+        ): ExceptionDescription {
             return ExceptionDescription(
                 clazz = javaClass.name,
                 thread = thread.name,
-                message = message ?: "-",
-                uptimeTimestamp = uptimeTimestamp
+                message = message,
+                uptimeTimestamp = uptimeTimestamp,
+                timestamp = timestamp
             )
         }
 
         /**
          * Deserialize exception description from a string.
+         *
+         * Uses custom implementation to avoid extra dependencies and potential errors.
          */
         internal fun fromSerialized(str: String): ExceptionDescription? {
             return try {
@@ -62,8 +82,11 @@ data class ExceptionDescription(
                 ExceptionDescription(
                     clazz = parts[0].fromBase64(),
                     thread = parts[1].fromBase64(),
-                    message = parts[2].fromBase64(),
-                    uptimeTimestamp = parts[3].toLong()
+                    message = parts[2].fromBase64().takeIf {
+                        it != MISSING_MESSAGE
+                    },
+                    uptimeTimestamp = parts[3].toLong(),
+                    timestamp = parts[4].toLong()
                 )
             } catch (e: Exception) {
                 null
@@ -78,5 +101,7 @@ data class ExceptionDescription(
             val byteArray = Base64.encode(toByteArray(), Base64.NO_WRAP)
             return String(byteArray)
         }
+
+        private const val MISSING_MESSAGE = "ExceptionDescription.missingMessage"
     }
 }

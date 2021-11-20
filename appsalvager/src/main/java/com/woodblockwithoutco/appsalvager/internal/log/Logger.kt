@@ -8,7 +8,7 @@ private const val BASE_TAG = "AppSalvager"
 /**
  * Log at error level.
  */
-fun errorLog(tag: String, message: String, throwable: Throwable? = null) {
+internal fun errorLog(tag: String, message: String, throwable: Throwable? = null) {
     if (BuildConfig.LOGS_ENABLED) {
         Log.e(BASE_TAG, "[$tag] $message", throwable)
     }
@@ -18,7 +18,7 @@ fun errorLog(tag: String, message: String, throwable: Throwable? = null) {
 /**
  * Log at warning level.
  */
-fun warningLog(tag: String, message: String, throwable: Throwable? = null) {
+internal fun warningLog(tag: String, message: String, throwable: Throwable? = null) {
     if (BuildConfig.LOGS_ENABLED) {
         Log.w(BASE_TAG, "[$tag] $message", throwable)
     }
@@ -28,7 +28,7 @@ fun warningLog(tag: String, message: String, throwable: Throwable? = null) {
 /**
  * Log at informational level.
  */
-fun infoLog(tag: String, message: String, throwable: Throwable? = null) {
+internal fun infoLog(tag: String, message: String, throwable: Throwable? = null) {
     if (BuildConfig.LOGS_ENABLED) {
         Log.i(BASE_TAG, "[$tag] $message", throwable)
     }
@@ -37,7 +37,7 @@ fun infoLog(tag: String, message: String, throwable: Throwable? = null) {
 /**
  * Log at debug level.
  */
-fun debugLog(tag: String, message: String, throwable: Throwable? = null) {
+internal fun debugLog(tag: String, message: String, throwable: Throwable? = null) {
     if (BuildConfig.LOGS_ENABLED) {
         Log.d(BASE_TAG, "[$tag] $message", throwable)
     }
@@ -46,7 +46,7 @@ fun debugLog(tag: String, message: String, throwable: Throwable? = null) {
 /**
  * Log at verbose level.
  */
-fun verboseLog(tag: String, message: String, throwable: Throwable? = null) {
+internal fun verboseLog(tag: String, message: String, throwable: Throwable? = null) {
     if (BuildConfig.LOGS_ENABLED) {
         Log.w(BASE_TAG, "[$tag] $message", throwable)
     }

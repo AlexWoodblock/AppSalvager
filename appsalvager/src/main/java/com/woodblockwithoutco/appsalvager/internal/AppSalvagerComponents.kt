@@ -36,7 +36,7 @@ internal class AppSalvagerComponents(
 ) {
 
     /**
-     * Instance of [ExceptionDescriptionsRepository].
+     * Instance of [ExceptionDescriptionsRepository]. Lazily initialized.
      */
     val exceptionDescriptionsRepository: ExceptionDescriptionsRepository by lazy {
         ExceptionDescriptionsRepository(context, uptimeThreshold)
