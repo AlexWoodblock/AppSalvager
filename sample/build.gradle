@@ -7,7 +7,7 @@ android {
     compileSdk 30
 
     defaultConfig {
-        applicationId "com.woodblockwithoutco.appsalvagerdemo"
+        applicationId "io.github.drbreen.appsalvagerdemo"
         minSdk 16
         targetSdk 30
         versionCode 1
