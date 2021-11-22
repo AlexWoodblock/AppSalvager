@@ -8,9 +8,10 @@
 <img src="https://github.com/DrBreen/AppSalvager/blob/master/.github/images/XQY4BW.gif?raw=true" width="30%">
 
 ### Quick start
-1. Override `attachBaseContext(Context)` in your `Application` object.
-2. Call ` AppSalvager.install(AppSalvager.Config)` there.
-3. Override `Application.onCreate()`, and right after calling `super.onCreate`, check boolean flag `AppSalvager.inSalvageMode`. If this flag is `true`, then you should abort normal `onCreate` flow and return as early as possible (ideally, right after the check). Not following that can lead to salvage mode itself crashing.
+1. Add `implementation 'io.github.drbreen:appsalvager:0.1.0'` to your module dependencies.
+2. Override `attachBaseContext(Context)` in your `Application` object.
+3. Call `AppSalvager.install(AppSalvager.Config)` there.
+4. Override `Application.onCreate()`, and right after calling `super.onCreate`, check boolean flag `AppSalvager.inSalvageMode`. If this flag is `true`, then you should abort normal `onCreate` flow and return as early as possible (ideally, right after the check). Not following that can lead to salvage mode itself crashing.
 
 ### Configuration
 `AppSalvager.Config` contains following fields:
