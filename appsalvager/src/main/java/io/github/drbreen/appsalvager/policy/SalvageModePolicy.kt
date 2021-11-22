@@ -1,6 +1,6 @@
 package io.github.drbreen.appsalvager.policy
 
-import io.github.drbreen.appsalvager.internal.storage.ExceptionDescription
+import io.github.drbreen.appsalvager.storage.ExceptionDescription
 
 /**
  * Policy determining if we're in salvage mode based on provided exceptions list.

@@ -1,7 +1,7 @@
 package io.github.drbreen.appsalvager.policy
 
 import io.github.drbreen.appsalvager.internal.log.verboseLog
-import io.github.drbreen.appsalvager.internal.storage.ExceptionDescription
+import io.github.drbreen.appsalvager.storage.ExceptionDescription
 
 /**
  * [SalvageModePolicy] that activates salvage mode based on number of exceptions

@@ -14,7 +14,7 @@ import io.github.drbreen.appsalvager.internal.SalvageActivity
 import io.github.drbreen.appsalvager.internal.log.infoLog
 import io.github.drbreen.appsalvager.internal.policy.RecentHistoryCutoffPolicy
 import io.github.drbreen.appsalvager.internal.util.processName
-import io.github.drbreen.appsalvager.internal.storage.ExceptionDescription.Companion.toDescription
+import io.github.drbreen.appsalvager.storage.ExceptionDescription.Companion.toDescription
 import io.github.drbreen.appsalvager.policy.SalvageModePolicy
 
 /**
@@ -178,6 +178,7 @@ object AppSalvager {
          * If other initialization are performed in [Application.onCreate] (like Dagger graph initialization),
          * then your factory should not rely on them as they are not going to be initialized.
          */
+        // TODO: also pass latest cause of the crash!
         val createSalvageView: (Activity) -> View,
 
         /**

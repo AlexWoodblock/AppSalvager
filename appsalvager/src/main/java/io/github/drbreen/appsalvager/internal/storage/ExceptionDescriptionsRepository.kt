@@ -4,6 +4,7 @@ import android.content.Context
 import io.github.drbreen.appsalvager.internal.log.debugLog
 import io.github.drbreen.appsalvager.internal.log.errorLog
 import io.github.drbreen.appsalvager.internal.log.verboseLog
+import io.github.drbreen.appsalvager.storage.ExceptionDescription
 import java.io.File
 import kotlin.Exception
 

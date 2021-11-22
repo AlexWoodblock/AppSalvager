@@ -1,4 +1,4 @@
-package io.github.drbreen.appsalvager.internal.storage
+package io.github.drbreen.appsalvager.storage
 
 import android.util.Base64
 import kotlin.Exception

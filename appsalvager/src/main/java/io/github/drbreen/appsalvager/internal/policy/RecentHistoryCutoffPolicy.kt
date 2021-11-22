@@ -1,6 +1,6 @@
 package io.github.drbreen.appsalvager.internal.policy
 
-import io.github.drbreen.appsalvager.internal.storage.ExceptionDescription
+import io.github.drbreen.appsalvager.storage.ExceptionDescription
 import io.github.drbreen.appsalvager.policy.SalvageModePolicy
 
 /**
