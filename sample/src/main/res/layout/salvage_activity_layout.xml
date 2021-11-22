@@ -22,6 +22,15 @@
             android:layout_marginBottom="16dp"
             android:text="Your process is now in salvage mode. Please apply the required fix, and restart the app"/>
 
+        <TextView
+            android:id="@+id/cause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_marginBottom="16dp" />
+
         <Button
             android:id="@+id/fixContentProvider"
             android:layout_width="wrap_content"

@@ -13,7 +13,12 @@ internal class SalvageActivity: Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(createSalvageView(this))
+
+        val crashCause = runCatching {
+            intent.getSerializableExtra(KEY_CRASH_CAUSE) as? Throwable
+        }.getOrNull()
+
+        setContentView(createSalvageView(this, crashCause))
     }
 
     override fun onBackPressed() {
@@ -24,11 +29,17 @@ internal class SalvageActivity: Activity() {
 
     companion object {
 
+        private const val KEY_CRASH_CAUSE = "crash_cause"
+
         /**
          * Create intent for creation of [SalvageActivity].
          */
-        fun createIntent(context: Context): Intent {
+        fun createIntent(
+            context: Context,
+            crashCause: Throwable
+        ): Intent {
             return Intent(context, SalvageActivity::class.java)
+                .putExtra(KEY_CRASH_CAUSE, crashCause)
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         }
     }

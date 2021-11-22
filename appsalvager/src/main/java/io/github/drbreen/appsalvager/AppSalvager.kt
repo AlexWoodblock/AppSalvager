@@ -79,7 +79,7 @@ object AppSalvager {
         ))
 
         if (shouldStartSalvage) {
-            startSalvage()
+            startSalvage(throwable)
         }
     }
 
@@ -142,17 +142,17 @@ object AppSalvager {
         }
     }
 
-    private fun startSalvage() {
+    private fun startSalvage(crashCause: Throwable) {
         infoLog(TAG, "Entering salvage mode...")
 
         with(components.context) {
             startActivity(
-                SalvageActivity.createIntent(this)
+                SalvageActivity.createIntent(this, crashCause)
             )
         }
     }
 
-    internal lateinit var createSalvageView: (Activity) -> View
+    internal lateinit var createSalvageView: (activity: Activity, crashCause: Throwable?) -> View
 
     /**
      * App salvage mode configuration.
@@ -177,9 +177,10 @@ object AppSalvager {
          *
          * If other initialization are performed in [Application.onCreate] (like Dagger graph initialization),
          * then your factory should not rely on them as they are not going to be initialized.
+         *
+         * Throwable that triggered salvage mode will also be passed to this method, if possible.
          */
-        // TODO: also pass latest cause of the crash!
-        val createSalvageView: (Activity) -> View,
+        val createSalvageView: (salvageActivity: Activity, crashCause: Throwable?) -> View,
 
         /**
          * Defines threshold for handling exceptions. If exception
